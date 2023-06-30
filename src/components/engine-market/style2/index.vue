@@ -159,6 +159,8 @@
 				showWarning2: false,
 				showWarning3: false,
 				showWarning4: false,
+                showWarning5: false,
+                showWarning6: false,
 				result: [],
 				audioObj: new Audio(),
 				audioStatus: 0,

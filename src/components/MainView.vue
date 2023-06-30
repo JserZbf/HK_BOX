@@ -38,11 +38,12 @@ export default defineComponent({
 .main {
     min-width: 1920px;
     min-height: 1080px;
-    background: #061B8E;
+    background: #25304e;
     border-radius: 0px 0px 0px 0px;
     opacity: 1;
     /* background: url("@/assets/main-bg.png") no-repeat center top / cover;
   background-color: #030542; */
+  position: relative;
     transform-origin: top center;
 }
 </style>

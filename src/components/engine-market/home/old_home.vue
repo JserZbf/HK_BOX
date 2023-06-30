@@ -1,138 +1,186 @@
 <template>
-    <!-- 上面是意思是湿度-humidness，压差-DifPressure，温度Temperature，露点-DewPoint，颗粒度大于0.5-G0.5，颗粒度大于5-G5.0 -->
+	<!-- 上面是意思是湿度-humidness，气压-DifPressure，温度Temperature，噪音-DewPoint，颗粒度大于0.5-G0.5，颗粒度大于5-G5.0 -->
 
-    <!-- "humidness": 38.60951066017151,
+	<!-- "humidness": 38.60951066017151,
 		"DifPressure-Pa": 0.11773109436035156,
 		"Temperature": 30.56986093521118,
 		"DewPoint-C": 13.609511852264404,
 		"G0.5": 7194699,
 		"G5.0": 2473 -->
-    <div class="pzBtn" @click="goSet"></div>
 	<div class="header-box flex-vcenter flex-hcenter">
 		<div class="header-title">{{ listData.dashboard_name }}</div>
 	</div>
-    <div class="height" @click="clickTab">
-        <div class="flex-row height">
-            <div class="boardCenter">
-                <div class="bcList">
-                    <div class="blPadding">
-                        <div class="padList"  :class="{       'warning-alert':       showWarning1      }">
-                            <div :class="{ active: wdTypeShow }">
-                                <img class="plIco" src="../../../assets/image/oneIco.png" />
-                                <span class="plName">{{listData?.temperature.findIndex(item=>item.id===temperatureId)!==-1?temperatureName:'温度1' }}:</span>
-                                <span class="plNum">{{listData?.temperature.find(item=>item.id===temperatureId)?.value ?listData?.temperature.find(item=>item.id===temperatureId)?.value:'NA'}}</span>
-                                <span class="plUnit">℃</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bcList">
-                    <div class="blPadding">
-                        <div class="padList"  :class="{       'warning-alert':       showWarning2      }">
-                            <div :class="{ active: sdTypeShow }">
-                                <img class="plIco" src="../../../assets/image/sd.png" />
-								<span class="plName">{{listData?.humidness.findIndex(item=>item.id===humidnessId)!==-1?humidnessName:'湿度1'}}:</span>
-                                <span class="plNum">{{listData?.humidness.find(item=>item.id===humidnessId)?.value?listData?.humidness.find(item=>item.id===humidnessId)?.value:'NA' }}</span>
-                                <span class="plUnit">%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bcList">
-                    <div class="blPadding">
-                        <div class="padList"  :class="{       'warning-alert':       showWarning3      }">
-                            <div :class="{ active: wdTypeShow }">
-                                <img class="plIco" src="../../../assets/image/oneIco.png" />
-                               <span class="plName">{{listData?.temperature.findIndex(item=>item.id===temperatureId2)!==-1?temperatureName2:'温度2'}}:</span>
-                               <span class="plNum">{{listData?.temperature.find(item=>item.id===temperatureId2)?.value?listData?.temperature.find(item=>item.id===temperatureId2)?.value:'NA' }}</span>
-                                <span class="plUnit">℃</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bcList">
-                    <div class="blPadding">
-                        <div class="padList"  :class="{       'warning-alert':       showWarning4      }">
-                            <div :class="{ active: sdTypeShow }">
-                                <img class="plIco" src="../../../assets/image/sd.png" />
-                                <span class="plName">{{listData?.humidness.findIndex(item=>item.id===humidnessId2)!==-1?humidnessName2:'湿度2' }}:</span>
-                                <span class="plNum">{{listData?.humidness.find(item=>item.id===humidnessId2)?.value?listData?.humidness.find(item=>item.id===humidnessId2)?.value:'NA' }}</span>
-                                <span class="plUnit">%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+	<div class="pzBtn" @click="goSet"></div>
+	<div class="height" @click="clickTab">
+		<div class="flex-row height">
+			<div class="boardCenter">
+				<div class="bcList">
+					<div class="blPadding">
+						<div class="padList" :class="{       'warning-alert':       showWarning1     }">
+							<div :class="{ active: ldTypeShow }">
+								<img class="plIco" src="../../../assets/image/oneIco.png" />
+								<span
+									class="plName">{{ listData?.dew_point_c.findIndex(item=>item.id===dew_point_cId)!==-1?dew_point_cName:'噪音' }}:</span>
+								<span
+									class="plNum">{{ listData?.dew_point_c.find(item=>item.id===dew_point_cId)?.value?listData?.dew_point_c.find(item=>item.id===dew_point_cId)?.value:'NA' }}</span>
+								<span class="plUnit">dB</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bcList">
+					<div class="blPadding">
+						<div class="padList" :class="{       'warning-alert':       showWarning2      }">
+							<div :class="{ active: wdTypeShow }">
+								<img class="plIco" src="../../../assets/image/oneIco.png" />
+								<span
+									class="plName">{{ listData?.temperature.findIndex(item=>item.id===temperatureId)!==-1?temperatureName:'温度' }}:</span>
+								<span
+									class="plNum">{{ listData?.temperature.find(item=>item.id===temperatureId)?.value?listData?.temperature.find(item=>item.id===temperatureId)?.value:'NA' }}</span>
+								<span class="plUnit">℃</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bcList">
+					<div class="blPadding">
+						<div class="padList" :class="{       'warning-alert':       showWarning3     }">
+							<div :class="{ active: ycTypeShow }">
+								<img class="plIco" src="../../../assets/image/yc.png" />
+								<span
+									class="plName">{{ listData?.dif_pressure_pa.findIndex(item=>item.id===dif_pressure_paId)!==-1?dif_pressure_paName:'气压' }}:</span>
+								<span
+									class="plNum">{{ listData?.dif_pressure_pa.find(item=>item.id===dif_pressure_paId)?.value?listData?.dif_pressure_pa.find(item=>item.id===dif_pressure_paId)?.value:'NA' }}</span>
+								<span class="plUnit">kPa</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bcList">
+					<div class="blPadding">
+						<div class="padList" :class="{       'warning-alert':       showWarning4      }">
+							<div :class="{ active: sdTypeShow }">
+								<img class="plIco" src="../../../assets/image/sd.png" />
+								<span
+									class="plName">{{ listData?.humidness.findIndex(item=>item.id===humidnessId)!==-1?humidnessName:'湿度' }}:</span>
+								<span
+									class="plNum">{{ listData?.humidness.find(item=>item.id===humidnessId)?.value?listData?.humidness.find(item=>item.id===humidnessId)?.value:'NA' }}</span>
+								<span class="plUnit">%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bcList" style="width: 100%">
+					<div class="blPadding">
+						<div class="padList" :class="{       'warning-alert':       showWarning5      }">
+							<div :class="{ active: jjdsTypeShow }">
+								<img class="plIco" src="../../../assets/image/twoIco.png" />
+								<span
+									class="plName">{{listData?.g05.findIndex(item=>item.id===g05Id)!==-1?g05Name:'PM'}}:</span>
+								<span class="plNum">{{ listData?.g05.find(item=>item.id===g05Id)?.value?listData?.g05.find(item=>item.id===g05Id)?.value:'NA' }}</span>
+								<span class="plUnit fontsize70">ug/m3 粒径2.5um</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bcList" style="width: 100%">
+					<div class="blPadding" style="padding-left: 20px">
+						<div class="padList" :class="{       'warning-alert':       showWarning6      }">
+							<div :class="{ active: jjdTypeShow }">
+								<img class="plIco" src="../../../assets/image/twoIco.png" />
+								<span
+									class="plName">{{listData?.g50.findIndex(item=>item.id===g50Id)!==-1?g50Name:'PM' }}:</span>
+								<span class="plNum">{{ (listData?.g50.find(item=>item.id===g50Id)?.value)?(listData?.g50.find(item=>item.id===g50Id)?.value):'NA' }}</span>
+								<span class="plUnit fontsize70">ug/m3 粒径10um</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-        </div>
+		</div>
 
-        <!-- 弹框 -->
-        <div class="clickModule" v-if="showDetail">
-            <div class="cmHeader">参数设置</div>
-            <div class="cmModule">
-                <div class="cmUl">
-                   <div class="closeBtn">
-                   	<span>报警屏蔽按钮</span>
-                   	<span class="cl01FF00" @click="openBtn" v-if="!closeBtnType">开启</span>
-                   	<span  @click="closeBtn" v-else>关闭</span>
-                   </div>
-                   <div class="closeBtn">
-                   	<span>语音报警功能</span>
-                   	<span @click="openWarningAudio"   v-if="!warningAudio">关闭</span>
-                   	<span class="cl01FF00" @click="closeWarningAudio"     v-else>开启</span>
-                   </div>
-                    <div class="blank33">
-                        
-                        <div class="cmList">
-                            <span>温度报警上限:</span>
-                            <span>{{ alarmswdup }}</span>
-                        </div>
-                        <div class="cmList">
-                            <span>温度报警下限:</span>
-                            <span>{{ alarmswdlow }}</span>
-                        </div>
-                      
-                        <div class="cmList">
-                            <span>湿度报警上限:</span>
-                            <span>{{ alarmssdup }}</span>
-                        </div>
-                        <div class="cmList">
-                            <span>湿度报警下限:</span>
-                            <span>{{ alarmssdlow }}</span>
-                        </div>
-						
+		<!-- 弹框 -->
+		<div class="clickModule" v-if="showDetail">
+			<div class="cmHeader">参数设置</div>
+			<div class="cmModule">
+				<div class="cmUl">
+					<div class="closeBtn">
+						<span>报警屏蔽按钮</span>
+						<span class="cl01FF00" @click="openBtn" v-if="!closeBtnType">开启</span>
+						<span  @click="closeBtn" v-else>关闭</span>
+					</div>
+					<div class="closeBtn">
+						<span>语音报警功能</span>
+						<span @click="openWarningAudio"   v-if="!warningAudio">关闭</span>
+						<span class="cl01FF00" @click="closeWarningAudio"     v-else>开启</span>
+					</div>
+					<div class="blank33">
 						<div class="cmList">
-						    <span>温度报警上限:</span>
-						    <span>{{ alarmswdup2 }}</span>
+							<span>噪音报警上限:</span>
+							<span>{{ alarmsldup }}</span>
 						</div>
 						<div class="cmList">
-						    <span>温度报警下限:</span>
-						    <span>{{ alarmswdlow2 }}</span>
-						</div>
-						                      
-						<div class="cmList">
-						    <span>湿度报警上限:</span>
-						    <span>{{ alarmssdup2 }}</span>
+							<span>噪音报警下限:</span>
+							<span>{{ alarmsldlow }}</span>
 						</div>
 						<div class="cmList">
-						    <span>湿度报警下限:</span>
-						    <span>{{ alarmssdlow2 }}</span>
+							<span>温度报警上限:</span>
+							<span>{{ alarmswdup }}</span>
 						</div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mask" v-if="maskShow" @click="clickClose"></div>
-    <i class="closeIco" @click="closeIco" v-if="setDetailMask"></i>
-    <div class="setDetailMask" v-if="setDetailMask">
-        <setDetail @setChangeDetail="setChangeDetail" />
-    </div>
+						<div class="cmList">
+							<span>温度报警下限:</span>
+							<span>{{ alarmswdlow }}</span>
+						</div>
+						<div class="cmList">
+							<span>气压报警上限:</span>
+							<span>{{ alarmsycup }}</span>
+						</div>
+						<div class="cmList">
+							<span>气压报警下限:</span>
+							<span>{{ alarmsyclow }}</span>
+						</div>
+						<div class="cmList">
+							<span>湿度报警上限:</span>
+							<span>{{ alarmssdup }}</span>
+						</div>
+						<div class="cmList">
+							<span>湿度报警下限:</span>
+							<span>{{ alarmssdlow }}</span>
+						</div>
+					</div>
+					<div class="blank33">
+						<div class="cmList">
+							<span>PM报警上限<label style="font-size:16px">(0.5um)</label>:</span>
+							<span>{{ alarmsjjdsup }}</span>
+						</div>
+						<div class="cmList">
+							<span>PM报警下限<label style="font-size:16px">(0.5um)</label>:</span>
+							<span>{{ alarmsjjdslow }}</span>
+						</div>
+						<div class="cmList">
+							<span>PM报警上限<label style="font-size:16px">(5um)</label>:</span>
+							<span>{{ alarmsjjdup }}</span>
+						</div>
+						<div class="cmList">
+							<span>PM报警下限<label style="font-size:16px">(5um)</label>:</span>
+							<span>{{ alarmsjjdlow }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mask" v-if="maskShow" @click="clickClose"></div>
+	<i class="closeIco" @click="closeIco" v-if="setDetailMask"></i>
+	<div class="setDetailMask" v-if="setDetailMask">
+		<setDetail @setChangeDetail="setChangeDetail" />
+	</div>
 	<div class="plTime">
 		<span>{{ nowDate }}</span>
 	</div>
 </template>
+
 <script lang="ts">
 	import {
 		ElLoading
@@ -158,13 +206,14 @@
 				showWarning2: false,
 				showWarning3: false,
 				showWarning4: false,
+                showWarning5: false,
 				result: [],
 				audioObj: new Audio(),
 				audioStatus: 0,
 				// audioFilePath:[
-				//   "/audio/露点.mp3",
+				//   "/audio/噪音.mp3",
 				//   "/audio/温度.mp3",
-				//   "/audio/压差.mp3",
+				//   "/audio/气压.mp3",
 				//   "/audio/湿度.mp3",
 				//   "/audio/0.5微米尘埃粒子.mp3",
 				//   "/audio/5微米尘埃粒子.mp3"
@@ -190,10 +239,10 @@
 						"temperature": { //温度
 							"is_waring": false, // 是否报警
 						},
-						"dif_pressure_pa": { //压差
+						"dif_pressure_pa": { //气压
 							"is_waring": false, // 是否报警
 						},
-						"dew_point_c": { //露点
+						"dew_point_c": { //噪音
 							"is_waring": false, // 是否报警
 						},
 						"g05": { //g0.5
@@ -213,21 +262,21 @@
 
 					dashboard_name: "",
 					dew_point_c: [{
-						name: '露点',
+						name: '噪音',
 						value: 'NA',
 						type: '',
 						isAlarm: 0,
 						id: ''
 					}],
 					g05: [{
-						name: '洁净度',
+						name: 'PM',
 						value: 'NA',
 						type: '',
 						isAlarm: 0,
 						id: ''
 					}],
 					g50: [{
-						name: '洁净度',
+						name: 'PM',
 						value: 'NA',
 						type: '',
 						isAlarm: 0,
@@ -248,7 +297,7 @@
 						id: ''
 					}],
 					dif_pressure_pa: [{
-						name: '压差',
+						name: '气压',
 						value: 'NA',
 						type: '',
 						isAlarm: 0,
@@ -259,16 +308,12 @@
 				alarmsldlow: "",
 				alarmswdlow: "",
 				alarmswdup: "",
-				alarmswdlow2: "",
-				alarmswdup2: "",
 
 				alarmsyclow: "",
 				alarmsycup: "",
 
 				alarmssdlow: "",
 				alarmssdup: "",
-				alarmssdlow2: "",
-				alarmssdup2: "",
 
 				alarmsjjdslow: "",
 				alarmsjjdsup: "",
@@ -280,44 +325,39 @@
 				gettimes: "",
 				formNum: 0,
 				ldType: true,
-				ldTypeShow: false, //露点闪烁状态
-				ldTypeTimer: {}, //露点闪烁定时器
+				ldTypeShow: false, //噪音闪烁状态
+				ldTypeTimer: {}, //噪音闪烁定时器
 				wdType: true,
 				wdTypeShow: false, //温度闪烁状态
 				wdTypeTimer: {}, //温度闪烁定时器
 				ycType: true,
-				ycTypeShow: false, //压差闪烁状态
-				ycTypeTimer: {}, //压差闪烁定时器
+				ycTypeShow: false, //气压闪烁状态
+				ycTypeTimer: {}, //气压闪烁定时器
 				sdType: true,
 				sdTypeShow: false, //湿度闪烁状态
 				sdTypeTimer: {}, //湿度闪烁定时器
 				jjdsType: true,
-				jjdsTypeShow: false, //洁净度闪烁状态
-				jjdsTypeTimer: {}, //洁净度闪烁定时器
+				jjdsTypeShow: false, //PM闪烁状态
+				jjdsTypeTimer: {}, //PM闪烁定时器
 				jjdType: true,
-				jjdTypeShow: false, //洁净度闪烁状态
-				jjdTypeTimer: {}, //洁净度闪烁定时器
+				jjdTypeShow: false, //PM闪烁状态
+				jjdTypeTimer: {}, //PM闪烁定时器
 
 				nowDate: "", // 当前日期
 
 				closeBtnType: false,
 				alarmsldWarning: false,
 				alarmswdWarning: false,
-				alarmswdWarning2: false,
 				alarmsycWarning: false,
 				alarmssdWarning: false,
-				alarmssdWarning2: false,
-				
 				alarmsjjdsWarning: false,
 				alarmsjjdlowWarning: false,
-				dew_point_cName: "露点",
+				dew_point_cName: "噪音",
 				temperatureName: "温度",
-				temperatureName2: "温度2",
-				dif_pressure_paName: "压差",
+				dif_pressure_paName: "气压",
 				humidnessName: "湿度",
-				humidnessName2: "湿度2",
-				g05Name: "洁净度",
-				g50Name: "洁净度",
+				g05Name: "PM",
+				g50Name: "PM",
 
 				dew_point_cId: "",
 				temperatureId: "",
@@ -325,8 +365,7 @@
 				humidnessId: "",
 				g05Id: "",
 				g50Id: "",
-				temperatureId2: "",
-				humidnessId2: "",
+				
 				postData:""
 
 
@@ -341,7 +380,7 @@
 				// console.log(this.listData)
 				let msgResult = ''
 				// case "1":
-				// 	// 露点报警上下限
+				// 	// 噪音报警上下限
 				// 	this.alarmsldup = item.alarmSuperiorLimit
 				// 	this.alarmsldlow = item.alarmLowerLimit
 				// 	break;
@@ -360,58 +399,67 @@
 				// 	this.alarmsjjdup = item.alarmSuperiorLimit
 				// 	this.alarmsjjdlow = item.alarmLowerLimit
 				// 	break
-				console.log(this.listData)
-				// 1.alarmsldWarning 露点 2.alarmswdWarning 温度 3.alarmsycWarning 压差 4.alarmssdWarning 湿度 5.alarmsjjdsWarning g05 6.alarmsjjdlowWarning g50
+				// 1.alarmsldWarning 噪音 2.alarmswdWarning 温度 3.alarmsycWarning 气压 4.alarmssdWarning 湿度 5.alarmsjjdsWarning g05 6.alarmsjjdlowWarning g50
+				let dew_point_c = this.listData?.dew_point_c.find(item => item.id === this.dew_point_cId)
 				let temperature = this.listData?.temperature.find(item => item.id === this.temperatureId)
-				let temperature2 = this.listData?.temperature.find(item => item.id === this.temperatureId2)
-				
+				let dif_pressure_pa = this.listData?.dif_pressure_pa.find(item => item.id === this.dif_pressure_paId)
 				let humidness = this.listData?.humidness.find(item => item.id === this.humidnessId)
-				let humidness2 = this.listData?.humidness.find(item => item.id === this.humidnessId2)
+				let g05 = this.listData?.g05.find(item => item.id === this.g05Id)
+				let g50 = this.listData?.g50.find(item => item.id === this.g50Id)
 				// console.log(dew_point_c?.value)
 				// console.log(this.alarmsldup)
 				// console.log(dew_point_c?.value > this.alarmsldup)
 
-				// 1.露点报警上下限 alarmsldup alarmsldlow
+				// 1.噪音报警上下限 alarmsldup alarmsldlow
 				// 2.温度报警上下限 alarmswdup alarmswdlow
-				// 3.压差报警上下限 alarmsycup alarmsyclow
+				// 3.气压报警上下限 alarmsycup alarmsyclow
 				// 4.湿度报警上下限 alarmssdup alarmssdlow
 				// 5.g0.5报警上下线 alarmsjjdsup alarmsjjdslow
 				// 6.g5.0报警上下限  alarmsjjdup alarmsjjdlow
 				// console.log(this.alarmsldWarning)
-				
-				if ((this.alarmswdWarning && this.alarmswdup && temperature?.value > this.alarmswdup) ||
-					(this.alarmswdWarning && this.alarmswdlow && temperature?.value < this.alarmswdlow)) {
+				if ((this.alarmsldWarning && this.alarmsldup && dew_point_c?.value > this.alarmsldup) ||
+					(this.alarmsldWarning && this.alarmsldlow && dew_point_c?.value < this.alarmsldlow)
+				) {
 					this.showWarning1 = true
-					msgResult += this.temperatureName
+					msgResult += this.dew_point_cName
 				} else {
 					this.showWarning1 = false
 				}
-				
-				if ((this.alarmssdWarning && this.alarmssdup && humidness?.value > this.alarmssdup) ||
-					(this.alarmssdWarning && this.alarmssdlow && humidness?.value < this.alarmssdlow)) {
+				if ((this.alarmswdWarning && this.alarmswdup && temperature?.value > this.alarmswdup) ||
+					(this.alarmswdWarning && this.alarmswdlow && temperature?.value < this.alarmswdlow)) {
 					this.showWarning2 = true
-					msgResult += this.humidnessName
+					msgResult += this.temperatureName
 				} else {
 					this.showWarning2 = false
 				}
-				
-				
-				if ((this.alarmswdWarning2 && this.alarmswdup2 && temperature2?.value > this.alarmswdup2) ||
-					(this.alarmswdWarning2 && this.alarmswdlow2 && temperature2?.value < this.alarmswdlow2)) {
+				if ((this.alarmsycWarning && this.alarmsycup && dif_pressure_pa?.value > this.alarmsycup) ||
+					(this.alarmsycWarning && this.alarmsyclow && dif_pressure_pa?.value < this.alarmsyclow)) {
 					this.showWarning3 = true
-					msgResult += this.temperatureName
+					msgResult += this.dif_pressure_paName
 				} else {
 					this.showWarning3 = false
 				}
-				
-				if ((this.alarmssdWarning2 && this.alarmssdup2 && humidness2?.value > this.alarmssdup2) ||
-					(this.alarmssdWarning2 && this.alarmssdlow2 && humidness2?.value < this.alarmssdlow2)) {
+				if ((this.alarmssdWarning && this.alarmssdup && humidness?.value > this.alarmssdup) ||
+					(this.alarmssdWarning && this.alarmssdlow && humidness?.value < this.alarmssdlow)) {
 					this.showWarning4 = true
 					msgResult += this.humidnessName
 				} else {
 					this.showWarning4 = false
 				}
-				
+				if ((this.alarmsjjdsWarning && this.alarmsjjdsup && g05?.value > this.alarmsjjdsup) ||
+					(this.alarmsjjdsWarning && this.alarmsjjdslow && g05?.value < this.alarmsjjdslow)) {
+					this.showWarning5 = true
+					msgResult += this.g05Name
+				} else {
+					this.showWarning5 = false
+				}
+				if ((this.alarmsjjdlowWarning && this.alarmsjjdup && g50?.value > this.alarmsjjdup) ||
+					(this.alarmsjjdlowWarning && this.alarmsjjdlow && g50?.value < this.alarmsjjdlow)) {
+					this.showWarning6 = true
+					msgResult += this.g50Name
+				} else {
+					this.showWarning6 = false
+				}
 				if (msgResult) {
 					
 					this.playAudio()
@@ -766,34 +814,25 @@
 						this.result = result
 						result.forEach((item: any) => {
 							switch (item.conType) {
-								case 1: // 1.alarmsldWarning 露点 2.alarmswdWarning 温度 5.alarmsjjdsWarning g05 6.alarmsjjdlowWarning g50
-									// 露点报警上下限
+								case 1: // 1.alarmsldWarning 噪音 2.alarmswdWarning 温度 5.alarmsjjdsWarning g05 6.alarmsjjdlowWarning g50
+									// 噪音报警上下限
 									this.alarmsldup = item.alarmSuperiorLimit
 									this.alarmsldlow = item.alarmLowerLimit
 									this.alarmsldWarning = item.isAlarm === 1 ? true : false
 									this.dew_point_cName = item.name
 									this.dew_point_cId = item.id
+									
 									break;
 								case 2:
 									// 温度报警上下限
-									if(item.id === 2){
-										this.temperatureName = item.name
-										this.temperatureId = item.id
-										this.alarmswdup = item.alarmSuperiorLimit
-										this.alarmswdlow = item.alarmLowerLimit
-										this.alarmswdWarning = item.isAlarm === 1 ? true : false
-									}
-									else {
-										this.temperatureName2 = item.name
-										this.temperatureId2 = item.id
-										this.alarmswdup2 = item.alarmSuperiorLimit
-										this.alarmswdlow2 = item.alarmLowerLimit
-										this.alarmswdWarning2 = item.isAlarm === 1 ? true : false
-									} 
-									
+									this.temperatureName = item.name
+									this.temperatureId = item.id
+									this.alarmswdup = item.alarmSuperiorLimit
+									this.alarmswdlow = item.alarmLowerLimit
+									this.alarmswdWarning = item.isAlarm === 1 ? true : false
 									break
 								case 3:
-									// 压差报警上下限
+									// 气压报警上下限
 									this.dif_pressure_paName = item.name
 									this.dif_pressure_paId = item.id
 									this.alarmsycup = item.alarmSuperiorLimit
@@ -802,22 +841,11 @@
 									break
 								case 4:
 									// 湿度报警上下限
-									
-									if(item.id === 1){
-										this.humidnessId = item.id
-										this.humidnessName = item.name
-										this.alarmssdup = item.alarmSuperiorLimit
-										this.alarmssdlow = item.alarmLowerLimit
-										this.alarmssdWarning = item.isAlarm === 1 ? true : false
-									}
-									else {
-										this.humidnessName2 = item.name
-										this.humidnessId2 = item.id
-										this.alarmssdup2 = item.alarmSuperiorLimit
-										this.alarmssdlow2 = item.alarmLowerLimit
-										this.alarmssdWarning2 = item.isAlarm === 1 ? true : false
-									}
-									
+									this.humidnessName = item.name
+									this.humidnessId = item.id
+									this.alarmssdup = item.alarmSuperiorLimit
+									this.alarmssdlow = item.alarmLowerLimit
+									this.alarmssdWarning = item.isAlarm === 1 ? true : false
 									break
 								case 5:
 									//  g0.5报警上下线
@@ -866,14 +894,13 @@
 				this.getTemplate()
 			}, 1000)
 			//   if(result?.type ==='data'){
-		
+
 			//   }
-		
-		
+
+
 		},
 	});
 </script>
-
 
 <style scoped>
 	.header-box {
@@ -990,6 +1017,7 @@
 		width: 100%;
 		margin-top: 30px;
 	}
+
 	.cl01FF00 {
 		background-color: #01ff00 !important;
 	}
@@ -1015,6 +1043,7 @@
 		height: 38px;
 		background: #f0070a;
 		border-radius: 0px 0px 0px 0px;
+		float: right;
 		font-size: 30px;
 		color: #000000;
 		line-height: 38px;
@@ -1101,7 +1130,7 @@
 	}
 
 	.plTime {
-		
+
 		position: fixed;
 		bottom: 30px;
 		left: 50%;
@@ -1116,16 +1145,16 @@
 		line-height: 120px;
 		margin: 0 9%;
 	}
-	
+
 	.plUnit {
 		float: right;
 		margin: 0px 10px 0 0;
-		font-size: 50px;
+		font-size: 90px;
 		color: #69c9fe;
 		font-weight: bold;
 		line-height: 120px;
 	}
-	
+
 	.plName {
 		font-size: 78px;
 		font-weight: bold;
@@ -1222,4 +1251,3 @@
 		width: calc(100% - 44px);
 	}
 </style>
-

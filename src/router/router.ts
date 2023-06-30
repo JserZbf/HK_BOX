@@ -9,25 +9,14 @@ import SetDetailStyle5 from '@/components/engine-market/style5/index.vue';
 import SetDetailStyle6 from '@/components/engine-market/style6/index.vue';
 import SetDetailStyle7 from '@/components/engine-market/home/home.vue';
 import MainView from '@/components/MainView.vue';
-import SetDetail from '@/components/setDetail/oldSetDetail.vue';
+import SetDetail from '@/components/setDetail/SetDetail.vue';
 const routes: RouteRecordRaw[] = [
-    // {
-    //     path: "/",
-    //     redirect: {
-    //         name: "home",
-    //     },
-    // },
     {
         path: '/',
         component: MainView,
         meta: { auth: [''] },
         children: [
-            {
-                path: '',
-                redirect: {
-                    name: 'home'
-                }
-            },
+            { path: '', redirect: '/engine/home' },
             {
                 path: '/engine',
                 component: EngineView,
@@ -57,7 +46,6 @@ const routes: RouteRecordRaw[] = [
                         component: SetDetailStyle6
                     },
                     {
-                        name: 'home',
                         path: '/engine/home',
                         component: SetDetailStyle7
                     }
@@ -67,13 +55,10 @@ const routes: RouteRecordRaw[] = [
             {
                 path: '/setDetail',
                 component: SetDetail,
+
             },
 
         ],
-    },
-    {
-        path: "/:catchAll(.*)",
-        redirect: "/engine/home",
     },
 ];
 

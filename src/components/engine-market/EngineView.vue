@@ -537,7 +537,7 @@ defineComponent
 .header-box {
     height: 135px;
     z-index: 800;
-    background: url("/image/headerIco.png") no-repeat center top / cover;
+    background: url("@/assets/image/headerIco.png") no-repeat center top / cover;
 }
 
 

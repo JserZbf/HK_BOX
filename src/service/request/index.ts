@@ -4,7 +4,6 @@ import type {
     CancelRequestSource, RequestConfig,
     RequestInterceptors
 } from './types'
-
 class Request {
     // axios 实例
     instance: AxiosInstance

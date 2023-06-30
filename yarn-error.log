@@ -1,0 +1,58 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn add element-plus
+
+PATH: 
+  /Users/next/Library/pnpm:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/next/Library/pnpm
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  19.0.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: EACCES: permission denied, mkdir '/Users/next/Desktop/senhui-webfront/node_modules/@babel/highlight/node_modules/ansi-styles'
+
+npm manifest: 
+  {
+    "name": "avic-aero-engine-web",
+    "version": "0.0.0",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "serve": "vite preview"
+    },
+    "dependencies": {
+      "axios": "^0.21.1",
+      "dayjs": "^1.10.6",
+      "echarts": "^5.2.1",
+      "element-plus": "1.1.0-beta.7",
+      "mqtt": "^2.18.8",
+      "node-sass": "^7.0.3",
+      "normalize.css": "^8.0.1",
+      "sass-loader": "^13.1.0",
+      "style-loader": "^3.3.1",
+      "vue": "^3.2.16",
+      "vue-router": "^4.0.11",
+      "vuex": "^4.0.2"
+    },
+    "devDependencies": {
+      "@types/mqtt": "^2.5.0",
+      "@types/node": "^16.11.4",
+      "@vitejs/plugin-vue": "^1.9.3",
+      "less": "^4.1.3",
+      "less-loader": "^11.1.0",
+      "typescript": "^4.4.3",
+      "vite": "^2.6.4",
+      "vue-tsc": "^0.3.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

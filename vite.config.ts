@@ -7,13 +7,11 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': resolve('./src'),
-            // '/image': resolve('src/assets/image'),
         },
     },
-    base:'./',
     build: {
         target: 'esnext',
-        outDir: 'plc-front',
+		outDir:'plc-front',
         chunkSizeWarningLimit: 600,
         rollupOptions: {
             output: {
@@ -24,33 +22,19 @@ export default defineConfig({
             },
         },
         minify: 'terser',
-        // terserOptions: {
-        //     compress: {
-        //         // 生产环境时移除console
-        //         drop_console: true,
-        //         drop_debugger: true,
-        //     },
-        // },
+        terserOptions: {
+            compress: {
+                //生产环境时移除console
+                // drop_console: true,
+                // drop_debugger: true,
+            },
+        },
     },
     server: {
+        host: '0.0.0.0',
         proxy: {
-            // '/api': {
-            //     target: 'http://192.168.0.22:8080',
-            //     changeOrigin: true,
-            //     rewrite: (path) => path.replace(/^\/api/, ''),
-            // },
-            // '/api': {
-            //     target: 'http://192.168.0.52:8080',
-            //     changeOrigin: true,
-            //     rewrite: (path) => path.replace(/^\/api/, ''),
-            // },
-            // '/api': {
-            //     target: 'http://192.168.0.27:8080',
-            //     changeOrigin: true,
-            //     rewrite: (path) => path.replace(/^\/api/, ''),
-            // },
             '/api': {
-                target: 'http://192.168.0.32:8080',
+                target: 'http://10.10.30.44:8080',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api/, ''),
             },
